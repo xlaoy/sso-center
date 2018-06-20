@@ -1,13 +1,14 @@
 package com.xlaoy.sso.entity;
 
-import com.xlaoy.common.jpa.AbstractEntity;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/2/28 0028.
  */
 @Data
-public class GlobalUserEntity extends AbstractEntity {
+public class GlobalUserEntity implements Serializable{
 
     private String guid;
 
