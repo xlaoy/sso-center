@@ -14,3 +14,10 @@ swagger:
     sso:
       title: SSO模块
       base-package: com.xlaoy.sso
+
+#打开actuator的所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
