@@ -1,5 +1,6 @@
 package com.xlaoy.sso.config;
 
+import com.xlaoy.common.config.SSOConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,7 +28,8 @@ public class CorsFilterConfig {
                                 HttpMethod.POST.name(),
                                 HttpMethod.PUT.name(),
                                 HttpMethod.DELETE.name())
-                        .allowedHeaders(CorsConfiguration.ALL);
+                        .allowedHeaders(CorsConfiguration.ALL)
+                        .exposedHeaders(SSOConstants.JWT_TOKEN);
         UrlBasedCorsConfigurationSource configurationSource = new UrlBasedCorsConfigurationSource();
         configurationSource.registerCorsConfiguration("/**", corsRegistration.getCorsConfiguration());
         return new CorsFilter(configurationSource);
