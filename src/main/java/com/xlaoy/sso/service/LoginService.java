@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by Administrator on 2018/2/28 0028.
@@ -35,6 +36,10 @@ public class LoginService {
 
     public String login1(Login1DTO dto) {
 
+        String requestId = UUID.randomUUID().toString().replace("-", "");
+
+        logger.info("用户请求登录,info={},requestId={}", JSONUtil.toJsonString(dto), requestId);
+
         GlobalUserEntity userEntity = globalUserRepository.findByUserNameAndPassword(dto.getUsername(), dto.getPassword());
         if(userEntity == null) {
             throw new BizException("用户名密码错误");
@@ -47,7 +52,7 @@ public class LoginService {
         claims.put("guid", userEntity.getGuid());
         claims.put("roles", roles);
 
-        logger.info("用户登录,info={}", JSONUtil.toJsonString(claims));
+        logger.info("用户登录成功,info={},requestId={}", JSONUtil.toJsonString(claims), requestId);
 
         return createJwtToken(claims);
     }
