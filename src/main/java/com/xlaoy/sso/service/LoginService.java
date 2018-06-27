@@ -35,7 +35,7 @@ public class LoginService {
 
     public String login1(Login1DTO dto) {
 
-        GlobalUserEntity userEntity = globalUserRepository.findByUsernameAndPassword(dto.getUsername(), dto.getPassword());
+        GlobalUserEntity userEntity = globalUserRepository.findByUserNameAndPassword(dto.getUsername(), dto.getPassword());
         if(userEntity == null) {
             throw new BizException("用户名密码错误");
         }

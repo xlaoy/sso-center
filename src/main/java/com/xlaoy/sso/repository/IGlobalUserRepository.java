@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository("globalUserRepository")
 public interface IGlobalUserRepository extends IBaseRepository<GlobalUserEntity> {
 
-    GlobalUserEntity findByUsernameAndPassword(String username, String password);
+    GlobalUserEntity findByUserNameAndPassword(String userName, String password);
 }

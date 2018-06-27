@@ -20,7 +20,7 @@ public class GlobalUserEntity extends AbstractEntity {
 
     private String guid;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -28,5 +28,5 @@ public class GlobalUserEntity extends AbstractEntity {
 
     private String email;
 
-    private String nickname;
+    private String nickName;
 }
