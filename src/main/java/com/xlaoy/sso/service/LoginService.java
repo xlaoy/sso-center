@@ -1,12 +1,17 @@
 package com.xlaoy.sso.service;
 
 import com.xlaoy.common.exception.BizException;
+import com.xlaoy.common.utils.JSONUtil;
 import com.xlaoy.sso.dto.Login1DTO;
 import com.xlaoy.sso.entity.GlobalUserEntity;
+import com.xlaoy.sso.repository.IGlobalUserRepository;
 import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,27 +24,30 @@ import java.util.Map;
 @Service
 public class LoginService {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private IGlobalUserRepository globalUserRepository;
+    @Autowired
+    private UserRoleRelaService userRoleRelaService;
+
     private Clock clock = DefaultClock.INSTANCE;
 
     public String login1(Login1DTO dto) {
-        GlobalUserEntity userEntity = new GlobalUserEntity();
-        userEntity.setGuid("1216b6eac408476a9223cc3358853adb");
-        userEntity.setUsername("xlaoy");
-        userEntity.setPassword("xlaoy");
-        userEntity.setPhone("15618503525");
-        userEntity.setEmail("768881412@qq.com");
 
-        if(!userEntity.getUsername().equals(dto.getUsername())
-                && userEntity.getPassword().equals(dto.getPassword())) {
+        GlobalUserEntity userEntity = globalUserRepository.findByUsernameAndPassword(dto.getUsername(), dto.getPassword());
+        if(userEntity == null) {
             throw new BizException("用户名密码错误");
         }
 
         //获取用户权限
-        String roles = "ROLE_USER,ROLE_SHOP";
+        String roles = userRoleRelaService.getRolesByUserId(userEntity.getId());
 
         Map<String, Object> claims = new HashMap();
         claims.put("guid", userEntity.getGuid());
         claims.put("roles", roles);
+
+        logger.info("用户登录,info={}", JSONUtil.toJsonString(claims));
 
         return createJwtToken(claims);
     }

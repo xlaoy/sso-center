@@ -12,21 +12,12 @@ import javax.persistence.Table;
  * Created by Administrator on 2018/2/28 0028.
  */
 @Entity
-@Table(name = "global_user")
+@Table(name = "roles")
 @DynamicInsert
 @DynamicUpdate
 @Data
-public class GlobalUserEntity extends AbstractEntity {
+public class RolesEntity extends AbstractEntity {
 
-    private String guid;
+    private String roleName;
 
-    private String username;
-
-    private String password;
-
-    private String phone;
-
-    private String email;
-
-    private String nickname;
 }
