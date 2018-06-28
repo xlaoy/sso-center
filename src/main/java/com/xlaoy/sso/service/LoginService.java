@@ -36,9 +36,7 @@ public class LoginService {
 
     public String login1(Login1DTO dto) {
 
-        String requestId = UUID.randomUUID().toString().replace("-", "");
-
-        logger.info("用户请求登录,info={},requestId={}", JSONUtil.toJsonString(dto), requestId);
+        logger.info("用户请求登录,info={}", JSONUtil.toJsonString(dto));
 
         GlobalUserEntity userEntity = globalUserRepository.findByUserNameAndPassword(dto.getUsername(), dto.getPassword());
         if(userEntity == null) {
@@ -52,7 +50,7 @@ public class LoginService {
         claims.put("guid", userEntity.getGuid());
         claims.put("roles", roles);
 
-        logger.info("用户登录成功,info={},requestId={}", JSONUtil.toJsonString(claims), requestId);
+        logger.info("用户登录成功,info={}", JSONUtil.toJsonString(claims));
 
         return createJwtToken(claims);
     }
