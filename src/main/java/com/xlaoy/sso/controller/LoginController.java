@@ -19,13 +19,12 @@ import java.time.LocalDateTime;
  */
 @Api(tags = "登陆 API")
 @RestController
-@RequestMapping("/sso")
 public class LoginController {
 
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/login1")
+    @PostMapping("/sso/login1")
     @ApiOperation(response = String.class, value = "登陆")
     public LocalDateTime login1(@RequestBody Login1DTO dto, HttpServletResponse response) {
         response.addHeader(SSOConstants.JWT_TOKEN, loginService.login1(dto));
