@@ -1,5 +1,6 @@
 package com.xlaoy.sso.service;
 
+import com.xlaoy.common.config.SSOConstants;
 import com.xlaoy.common.exception.BizException;
 import com.xlaoy.common.utils.JSONUtil;
 import com.xlaoy.sso.dto.Login1DTO;
@@ -47,8 +48,8 @@ public class LoginService {
         String roles = userRoleRelaService.getRolesByUserId(userEntity.getId());
 
         Map<String, Object> claims = new HashMap();
-        claims.put("guid", userEntity.getGuid());
-        claims.put("roles", roles);
+        claims.put(SSOConstants.GUID, userEntity.getGuid());
+        claims.put(SSOConstants.ROLES, roles);
 
         logger.info("用户登录成功,info={}", JSONUtil.toJsonString(claims));
 
