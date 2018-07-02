@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistration;
  * Created by Administrator on 2018/3/1 0001.
  */
 @Configuration
-public class CorsFilterConfig {
+public class WebFilterConfig {
 
     @Bean
     public CorsFilter corsFilter() {
