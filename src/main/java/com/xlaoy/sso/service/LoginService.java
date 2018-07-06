@@ -1,6 +1,6 @@
 package com.xlaoy.sso.service;
 
-import com.xlaoy.common.config.SSOConstants;
+import com.xlaoy.common.constants.SSOConstants;
 import com.xlaoy.common.exception.BizException;
 import com.xlaoy.common.utils.JSONUtil;
 import com.xlaoy.sso.dto.Login1DTO;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Administrator on 2018/2/28 0028.

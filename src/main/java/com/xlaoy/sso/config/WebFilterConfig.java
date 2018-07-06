@@ -1,6 +1,6 @@
 package com.xlaoy.sso.config;
 
-import com.xlaoy.common.config.SSOConstants;
+import com.xlaoy.common.constants.SSOConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
