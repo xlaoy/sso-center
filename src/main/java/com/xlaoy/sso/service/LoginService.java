@@ -29,8 +29,6 @@ public class LoginService {
 
     @Autowired
     private IGlobalUserRepository globalUserRepository;
-    @Autowired
-    private UserRoleRelaService userRoleRelaService;
 
     private Clock clock = DefaultClock.INSTANCE;
 
@@ -43,12 +41,8 @@ public class LoginService {
             throw new BizException("用户名密码错误");
         }
 
-        //获取用户权限
-        String roles = userRoleRelaService.getRolesByUserId(userEntity.getId());
-
         Map<String, Object> claims = new HashMap();
         claims.put(SSOConstants.GUID, userEntity.getGuid());
-        claims.put(SSOConstants.ROLES, roles);
 
         logger.info("用户登录成功,info={}", JSONUtil.toJsonString(claims));
 
