@@ -1,17 +1,14 @@
 package com.xlaoy.sso.entity;
 
-import com.xlaoy.common.jpa.AbstractEntity;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by Administrator on 2018/2/28 0028.
  */
-/*@Entity
-@Table(name = "global_user")
-@DynamicInsert
-@DynamicUpdate*/
 @Data
-public class GlobalUserEntity {//extends AbstractEntity {
+@Document(collection = "global_user")
+public class GlobalUserEntity {
 
     private String guid;
 

@@ -8,6 +8,13 @@ spring:
     encoding:
       charset: UTF-8
       force: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: xlaoy
+      username: xlaoy
+      password: ["1","2","3","4","5","6"]
 
 swagger:
   docket:

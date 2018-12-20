@@ -1,9 +1,11 @@
 package com.xlaoy.sso.config;
 
 import com.xlaoy.common.constants.SSOConstants;
+import com.xlaoy.common.utils.JSONUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -13,7 +15,12 @@ import org.springframework.web.servlet.config.annotation.CorsRegistration;
  * Created by Administrator on 2018/3/1 0001.
  */
 @Configuration
-public class WebFilterConfig {
+public class WebConfig {
+
+    @Bean
+    public MappingJackson2HttpMessageConverter jackson2HttpMessageConverter() {
+        return new MappingJackson2HttpMessageConverter(JSONUtil.getObjectMapper());
+    }
 
     @Bean
     public CorsFilter corsFilter() {

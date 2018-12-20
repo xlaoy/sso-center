@@ -1,7 +1,7 @@
 package com.xlaoy.sso.controller;
 
 import com.xlaoy.common.constants.SSOConstants;
-import com.xlaoy.sso.dto.Login1DTO;
+import com.xlaoy.sso.dto.LoginDTO;
 import com.xlaoy.sso.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,10 +23,10 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/sso/login1")
+    @PostMapping("/sso/login")
     @ApiOperation(response = String.class, value = "登陆")
-    public LocalDateTime login1(@RequestBody Login1DTO dto, HttpServletResponse response) {
-        response.addHeader(SSOConstants.JWT_TOKEN, loginService.login1(dto));
+    public LocalDateTime login1(@RequestBody LoginDTO dto, HttpServletResponse response) {
+        response.addHeader(SSOConstants.JWT_TOKEN, loginService.login(dto));
         return LocalDateTime.now();
     }
 

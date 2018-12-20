@@ -8,9 +8,9 @@ import java.io.Serializable;
  * Created by Administrator on 2018/2/28 0028.
  */
 @Data
-public class Login1DTO implements Serializable {
+public class LoginDTO implements Serializable {
 
-    private String username;
+    private String phone;
 
-    private String password;
+    private String code;
 }
