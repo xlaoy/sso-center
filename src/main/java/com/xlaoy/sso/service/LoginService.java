@@ -65,7 +65,7 @@ public class LoginService {
 
     private String createJwtToken(Map<String, Object> claims) {
         final Date createdDate = clock.now();
-        Long expirationTime = createdDate.getTime() + (60 * 1000 * 30);
+        Long expirationTime = createdDate.getTime() + (60 * 1000 * 360);
         final Date expirationDate = new Date(expirationTime);
         return Jwts.builder()
                 .setClaims(claims)
